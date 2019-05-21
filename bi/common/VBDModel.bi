@@ -25,13 +25,19 @@ class VBDModel < MarkovModel<VBDParameter,VBDState> {
   }
   
   fiber transition(x':VBDState, x:VBDState, θ:VBDParameter) -> Event {
-    nhe:Integer;
-    nme:Integer;
-    
-    nhe <~ Binomial(x.h.s, 1.0 - exp(-x.m.i/Real(x.h.n)));
-    nme <~ Binomial(x.m.s, 1.0 - exp(-x.h.i/Real(x.h.n)));
+   nhe:Integer;
+   nme:Integer;
+   auto a <- 1.0 - exp(-x.m.i/Real(x.h.n));
+   auto b <- 1.0 - exp(-x.h.i/Real(x.h.n));
+   if !(0.0 <= a && a <= 1.0) || !(0.0 <= b && b <= 1.0) {
+     stderr.print(" NAN HACK!");
+     yield FactorEvent(-inf);
+   } else {
+     nhe <~ Binomial(x.h.s, a);
+     nme <~ Binomial(x.m.s, b);
+     h.transition(x'.h, x.h, θ.h, nhe, x.h.e, x.h.i);
+     m.transition(x'.m, x.m, θ.m, nme, x.m.e, x.m.i);
+   }
+ }
 
-    h.transition(x'.h, x.h, θ.h, nhe, x.h.e, x.h.i);
-    m.transition(x'.m, x.m, θ.m, nme, x.m.e, x.m.i);
-  }
 }

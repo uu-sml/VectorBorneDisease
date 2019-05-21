@@ -22,9 +22,9 @@ class YapDengueModel < MarkovModel<YapDengueParameter,YapDengueState> {
 
   fiber initial(x:YapDengueState, θ:YapDengueParameter) -> Event {
     x.h.n <- 7370;
-    x.h.i <~ Poisson(5.0);
+    x.h.i <~ Poisson(35.0); // Poisson(5.0)
     x.h.i <- x.h.i + 1;
-    x.h.e <~ Poisson(5.0);
+    x.h.e <~ Poisson(35.0);// Poisson(5.0);
     x.h.r <~ Uniform(0, x.h.n - x.h.i - x.h.e);
     x.h.s <- x.h.n - x.h.e - x.h.i - x.h.r;
 
@@ -33,9 +33,9 @@ class YapDengueModel < MarkovModel<YapDengueParameter,YapDengueState> {
     x.h.Δi <- x.h.i;
     x.h.Δr <- 0;
     
-    u:Real;
-    u <~ Uniform(-1.0, 2.0);
-    x.m.n <- Integer(x.h.n*pow(10.0, u));
+    //u:Real;
+    //u <~ Uniform(-1.0, 2.0);
+    x.m.n <- 10*x.h.n; // *pow(10.0, u));
     x.m.r <- 0;
     x.m.i <- 0;
     x.m.e <- 0;

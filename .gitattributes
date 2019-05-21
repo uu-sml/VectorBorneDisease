@@ -1,0 +1,8 @@
+output/yap_dengue_csmc_balder.json filter=lfs diff=lfs merge=lfs -text
+output/yap_dengue_csmc_weekly.json filter=lfs diff=lfs merge=lfs -text
+output/yap_dengue_pgibbs_balder.json filter=lfs diff=lfs merge=lfs -text
+output/yap_dengue_pgibbs_weekly.json filter=lfs diff=lfs merge=lfs -text
+data/vbd_density.csv filter=lfs diff=lfs merge=lfs -text
+data/vbd_histogram.csv filter=lfs diff=lfs merge=lfs -text
+data/vbd_traces.csv filter=lfs diff=lfs merge=lfs -text
+data/vbd_autocorr.csv filter=lfs diff=lfs merge=lfs -text

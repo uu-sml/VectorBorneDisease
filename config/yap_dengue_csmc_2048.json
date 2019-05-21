@@ -1,0 +1,14 @@
+{
+  "model": {
+    "class": "YapDengueModel"
+  },
+  "sampler": {
+    "class": "ConditionalParticleFilter",
+    "nsamples": 2000,
+    "verbose":true,
+    "nparticles": 2048
+  },
+  "input":"input/yap_dengue_weekly.json",
+  "output":"output/yap_dengue_csmc_weekly_balder.json",
+  "seed":1234
+}
