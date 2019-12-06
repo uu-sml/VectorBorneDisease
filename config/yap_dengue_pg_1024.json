@@ -2,11 +2,12 @@
   "model": {
     "class": "YapDengueModel"
   },
-  "sampler": {
-    "class": "ParticleGibbs",
-    "nsamples": 2000,
-    "verbose":true,
+  "filter": {
     "nparticles": 1024
+  },
+  "sampler": {
+    "class": "ParticleGibbsSampler",
+    "nsamples": 2000
   },
   "input":"input/yap_dengue_weekly.json",
   "output":"output/yap_dengue_pgibbs_weekly.json",
